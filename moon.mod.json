@@ -1,0 +1,17 @@
+{
+  "name": "justjavac/walkdir",
+  "source": "src",
+  "version": "0.1.0",
+  "deps": {
+    "moonbitlang/x": "0.4.41"
+  },
+  "readme": "src/README.mbt.md",
+  "repository": "https://github.com/justjavac/moonbit-walkdir",
+  "license": "MIT",
+  "keywords": [
+    "walkdir",
+    "filesystem",
+    "fs"
+  ],
+  "description": "A deterministic walkdir library for MoonBit."
+}

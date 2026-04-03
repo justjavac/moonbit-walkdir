@@ -2,9 +2,6 @@
 
 [![license](https://img.shields.io/badge/license-MIT-green.svg)](./LICENSE)
 [![coverage](https://img.shields.io/codecov/c/github/justjavac/walkdir/main?label=coverage)](https://codecov.io/gh/justjavac/walkdir)
-[![linux](https://img.shields.io/codecov/c/github/justjavac/walkdir/main?flag=linux&label=linux)](https://codecov.io/gh/justjavac/walkdir)
-[![macos](https://img.shields.io/codecov/c/github/justjavac/walkdir/main?flag=macos&label=macos)](https://codecov.io/gh/justjavac/walkdir)
-[![windows](https://img.shields.io/codecov/c/github/justjavac/walkdir/main?flag=windows&label=windows)](https://codecov.io/gh/justjavac/walkdir)
 
 `justjavac/walkdir` is a MoonBit walkdir library focused on predictable output.
 It traverses directories depth-first, sorts child names lexicographically by
@@ -93,6 +90,6 @@ moon test --target native -v
 moon coverage analyze -p justjavac/walkdir
 ```
 
-The coverage badges above are driven by a GitHub Actions matrix and Codecov.
-They update after the `main` branch finishes CI and Codecov processes the
-uploaded reports.
+The coverage badge above is driven by Codecov and the Ubuntu coverage job in CI.
+It updates after the `main` branch finishes CI and Codecov processes the
+uploaded report.

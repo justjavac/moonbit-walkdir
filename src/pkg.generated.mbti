@@ -1,0 +1,32 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "justjavac/walkdir"
+
+// Values
+pub fn walk(String, include_root? : Bool, include_dirs? : Bool, max_depth? : Int, sort? : Bool) -> Array[DirEntry] raise
+
+pub fn walk_files(String, max_depth? : Int, sort? : Bool) -> Array[String] raise
+
+// Errors
+pub(all) suberror WalkError {
+  NotFound(String)
+  NotDirectory(String)
+} derive(Show)
+
+// Types and methods
+pub(all) struct DirEntry {
+  path : String
+  depth : Int
+  kind : EntryKind
+} derive(Eq, Show, ToJson)
+pub fn DirEntry::is_dir(Self) -> Bool
+pub fn DirEntry::is_file(Self) -> Bool
+
+pub(all) enum EntryKind {
+  File
+  Dir
+} derive(Eq, Show, ToJson)
+
+// Type aliases
+
+// Traits
+

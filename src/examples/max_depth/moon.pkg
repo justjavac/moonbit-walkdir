@@ -1,0 +1,7 @@
+import {
+  "justjavac/walkdir",
+}
+
+options(
+  "is-main": true,
+)

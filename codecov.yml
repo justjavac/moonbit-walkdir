@@ -1,7 +1,5 @@
 codecov:
   require_ci_to_pass: true
-  notify:
-    after_n_builds: 3
 
 coverage:
   status:
@@ -9,14 +7,3 @@ coverage:
       default:
         target: auto
     patch: off
-
-flags:
-  linux:
-    paths:
-      - src/
-  macos:
-    paths:
-      - src/
-  windows:
-    paths:
-      - src/

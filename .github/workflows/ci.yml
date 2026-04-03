@@ -7,17 +7,14 @@ on:
   pull_request:
 
 jobs:
-  test-and-coverage:
+  test:
     strategy:
       fail-fast: false
       matrix:
-        include:
-          - os: ubuntu-latest
-            flag: linux
-          - os: macos-latest
-            flag: macos
-          - os: windows-latest
-            flag: windows
+        os:
+          - ubuntu-latest
+          - macos-latest
+          - windows-latest
 
     runs-on: ${{ matrix.os }}
 
@@ -51,6 +48,28 @@ jobs:
       - name: Run native tests
         run: moon test --target native -v
 
+  coverage:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      - name: Set up MoonBit on Unix
+        shell: bash
+        run: |
+          curl -fsSL https://cli.moonbitlang.com/install/unix.sh | bash
+          echo "$HOME/.moon/bin" >> $GITHUB_PATH
+
+      - name: Show MoonBit version
+        run: moon version
+
+      - name: Sync dependencies
+        run: moon update
+
+      - name: Run native tests
+        run: moon test --target native -v
+
       - name: Generate coverage report
         run: moon coverage analyze -p justjavac/walkdir -- -f cobertura -o _build/coverage/coverage.xml
 
@@ -59,5 +78,4 @@ jobs:
         with:
           disable_search: true
           files: _build/coverage/coverage.xml
-          flags: ${{ matrix.flag }}
-          name: ${{ matrix.flag }}
+          name: coverage

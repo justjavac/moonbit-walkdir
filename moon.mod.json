@@ -1,11 +1,11 @@
 {
   "name": "justjavac/walkdir",
   "source": "src",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "deps": {
     "moonbitlang/x": "0.4.41"
   },
-  "readme": "src/README.mbt.md",
+  "readme": "README.mbt.md",
   "repository": "https://github.com/justjavac/moonbit-walkdir",
   "license": "MIT",
   "keywords": [

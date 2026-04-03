@@ -3,4 +3,3 @@ _build/
 .mooncakes/
 .moonagent/
 coverage.xml
-AGENTS.md

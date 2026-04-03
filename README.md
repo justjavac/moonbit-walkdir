@@ -1,7 +1,7 @@
 # justjavac/walkdir
 
 [![license](https://img.shields.io/badge/license-MIT-green.svg)](./LICENSE)
-[![coverage](https://img.shields.io/codecov/c/github/justjavac/walkdir/main?label=coverage)](https://codecov.io/gh/justjavac/walkdir)
+[![coverage](https://img.shields.io/codecov/c/github/justjavac/moonbit-walkdir/main?label=coverage)](https://codecov.io/gh/justjavac/moonbit-walkdir)
 
 `justjavac/walkdir` is a MoonBit walkdir library focused on predictable output.
 It traverses directories depth-first, sorts child names lexicographically by

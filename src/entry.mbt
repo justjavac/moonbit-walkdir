@@ -3,7 +3,15 @@
 pub(all) enum EntryKind {
   File
   Dir
-} derive(Eq, Show, ToJson)
+} derive(Eq, Debug, ToJson)
+
+///|
+pub impl Show for EntryKind with fn output(kind, logger) {
+  match kind {
+    File => logger.write_string("File")
+    Dir => logger.write_string("Dir")
+  }
+}
 
 ///|
 /// Represents one item returned by directory traversal.
@@ -15,7 +23,18 @@ pub(all) struct DirEntry {
   path : String
   depth : Int
   kind : EntryKind
-} derive(Eq, Show, ToJson)
+} derive(Eq, Debug, ToJson)
+
+///|
+pub impl Show for DirEntry with fn output(entry, logger) {
+  logger.write_string("DirEntry::{ path: ")
+  logger.write(entry.path)
+  logger.write_string(", depth: ")
+  logger.write(entry.depth)
+  logger.write_string(", kind: ")
+  logger.write(entry.kind)
+  logger.write_string(" }")
+}
 
 ///|
 /// Returns `true` when this entry represents a directory.

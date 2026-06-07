@@ -3,7 +3,23 @@
 pub(all) suberror WalkError {
   NotFound(String)
   NotDirectory(String)
-} derive(Show)
+} derive(Debug)
+
+///|
+pub impl Show for WalkError with fn output(error, logger) {
+  match error {
+    NotFound(path) => {
+      logger.write_string("NotFound(")
+      logger.write(path)
+      logger.write_string(")")
+    }
+    NotDirectory(path) => {
+      logger.write_string("NotDirectory(")
+      logger.write(path)
+      logger.write_string(")")
+    }
+  }
+}
 
 ///|
 /// Walks a directory tree in deterministic depth-first order.
@@ -147,5 +163,5 @@ fn can_descend(current_depth : Int, max_depth : Int?) -> Bool {
 ///|
 /// Builds a `DirEntry` value from raw traversal data.
 fn make_entry(path : String, depth : Int, kind : EntryKind) -> DirEntry {
-  DirEntry::{ path, depth, kind }
+  { path, depth, kind }
 }

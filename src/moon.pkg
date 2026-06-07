@@ -4,5 +4,10 @@ import {
 }
 
 import {
+  "moonbitlang/core/test",
   "moonbitlang/x/path",
 } for "test"
+
+import {
+  "moonbitlang/core/test",
+} for "wbtest"

@@ -16,7 +16,7 @@ fn entry(
   depth : Int,
   kind : @walkdir.EntryKind,
 ) -> @walkdir.DirEntry {
-  @walkdir.DirEntry::{ path, depth, kind }
+  { path, depth, kind }
 }
 
 ///|
@@ -34,7 +34,7 @@ test "walk returns sorted depth-first entries" {
     entry(deeper, 2, Dir),
     entry(join_path(deeper, "delta.md"), 3, File),
   ]
-  assert_eq(actual, expected)
+  @test.assert_eq(actual, expected)
 }
 
 ///|
@@ -49,7 +49,10 @@ test "walk respects include flags and max depth" {
   )
   let paths = actual.map(entry => entry.path)
   paths.sort_by((lhs, rhs) => lhs.lexical_compare(rhs))
-  assert_eq(paths, [join_path(root, "alpha.txt"), join_path(root, "bravo.log")])
+  @test.assert_eq(paths, [
+    join_path(root, "alpha.txt"),
+    join_path(root, "bravo.log"),
+  ])
 }
 
 ///|
@@ -59,13 +62,13 @@ test "walk_files returns only file paths" {
   let deeper = join_path(nested, "deeper")
   let all_files = @walkdir.walk_files(root)
   let shallow_files = @walkdir.walk_files(root, max_depth=1)
-  assert_eq(all_files, [
+  @test.assert_eq(all_files, [
     join_path(root, "alpha.txt"),
     join_path(root, "bravo.log"),
     join_path(nested, "charlie.txt"),
     join_path(deeper, "delta.md"),
   ])
-  assert_eq(shallow_files, [
+  @test.assert_eq(shallow_files, [
     join_path(root, "alpha.txt"),
     join_path(root, "bravo.log"),
   ])

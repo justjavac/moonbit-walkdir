@@ -10,5 +10,5 @@ test "can_descend handles none and boundaries" {
 test "make_entry builds the expected value" {
   let actual = make_entry("demo", 2, File)
   let expected = DirEntry::{ path: "demo", depth: 2, kind: File }
-  assert_eq(actual, expected)
+  @test.assert_eq(actual, expected)
 }

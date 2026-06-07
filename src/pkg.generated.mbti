@@ -1,6 +1,10 @@
 // Generated using `moon info`, DON'T EDIT IT
 package "justjavac/walkdir"
 
+import {
+  "moonbitlang/core/debug",
+}
+
 // Values
 pub fn walk(String, include_root? : Bool, include_dirs? : Bool, max_depth? : Int, sort? : Bool) -> Array[DirEntry] raise
 
@@ -10,21 +14,24 @@ pub fn walk_files(String, max_depth? : Int, sort? : Bool) -> Array[String] raise
 pub(all) suberror WalkError {
   NotFound(String)
   NotDirectory(String)
-} derive(Show)
+} derive(@debug.Debug)
+pub impl Show for WalkError
 
 // Types and methods
 pub(all) struct DirEntry {
   path : String
   depth : Int
   kind : EntryKind
-} derive(Eq, Show, ToJson)
+} derive(Eq, ToJson, @debug.Debug)
 pub fn DirEntry::is_dir(Self) -> Bool
 pub fn DirEntry::is_file(Self) -> Bool
+pub impl Show for DirEntry
 
 pub(all) enum EntryKind {
   File
   Dir
-} derive(Eq, Show, ToJson)
+} derive(Eq, ToJson, @debug.Debug)
+pub impl Show for EntryKind
 
 // Type aliases
 

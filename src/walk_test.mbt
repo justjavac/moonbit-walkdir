@@ -85,6 +85,23 @@ test "dir entry helpers expose kind checks" {
 }
 
 ///|
+test "show impls render public values" {
+  let file : @walkdir.EntryKind = File
+  let dir : @walkdir.EntryKind = Dir
+  let file_entry = entry("demo.txt", 1, file)
+  let not_found = @walkdir.WalkError::NotFound("missing")
+  let not_directory = @walkdir.WalkError::NotDirectory("demo.txt")
+  inspect("\{file}", content="File")
+  inspect("\{dir}", content="Dir")
+  inspect(
+    "\{file_entry}",
+    content="DirEntry::{ path: demo.txt, depth: 1, kind: File }",
+  )
+  inspect("\{not_found}", content="NotFound(missing)")
+  inspect("\{not_directory}", content="NotDirectory(demo.txt)")
+}
+
+///|
 test "walk reports missing roots" {
   let missing = join_path("testdata", "does_not_exist")
   let result : Result[Array[@walkdir.DirEntry], Error] = try? @walkdir.walk(

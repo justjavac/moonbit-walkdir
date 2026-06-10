@@ -1,6 +1,6 @@
 name = "justjavac/walkdir"
 
-version = "0.1.5"
+version = "0.1.6"
 
 import {
   "moonbitlang/x@0.4.45",

@@ -1,4 +1,13 @@
 ///|
+fn[T, E : Error] try_result_walk_test(f : () -> T raise E) -> Result[T, E] {
+  try f() catch {
+    e => Err(e)
+  } noraise {
+    value => Ok(value)
+  }
+}
+
+///|
 fn fixture_root() -> String {
   join_path("testdata", "walk_fixture")
 }
@@ -104,9 +113,9 @@ test "show impls render public values" {
 ///|
 test "walk reports missing roots" {
   let missing = join_path("testdata", "does_not_exist")
-  let result : Result[Array[@walkdir.DirEntry], Error] = try? @walkdir.walk(
-    missing,
-  )
+  let result : Result[Array[@walkdir.DirEntry], Error] = try_result_walk_test(() => {
+    @walkdir.walk(missing)
+  })
   guard result is Err(@walkdir.WalkError::NotFound(path)) && path == missing else {
     fail("expected NotFound")
   }
@@ -115,9 +124,9 @@ test "walk reports missing roots" {
 ///|
 test "walk rejects file roots" {
   let file_path = join_path(fixture_root(), "alpha.txt")
-  let result : Result[Array[@walkdir.DirEntry], Error] = try? @walkdir.walk(
-    file_path,
-  )
+  let result : Result[Array[@walkdir.DirEntry], Error] = try_result_walk_test(() => {
+    @walkdir.walk(file_path)
+  })
   guard result is Err(@walkdir.WalkError::NotDirectory(path)) &&
     path == file_path else {
     fail("expected NotDirectory")

@@ -3,7 +3,7 @@ name = "justjavac/walkdir"
 version = "0.1.6"
 
 import {
-  "moonbitlang/x@0.4.45",
+  "moonbitlang/x@0.4.46",
 }
 
 readme = "README.mbt.md"

@@ -3,7 +3,7 @@ name = "justjavac/walkdir"
 version = "0.1.7"
 
 import {
-  "moonbitlang/x@0.4.46",
+  "moonbitlang/x@0.4.47",
 }
 
 readme = "README.mbt.md"
@@ -16,6 +16,4 @@ keywords = [ "walkdir", "filesystem", "fs" ]
 
 description = "A deterministic walkdir library for MoonBit."
 
-options(
-  source: "src",
-)
+source = "src"

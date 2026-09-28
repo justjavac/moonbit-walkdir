@@ -5,6 +5,14 @@ pub(all) enum EntryKind {
   Dir
 } derive(Eq, Debug, ToJson)
 
+pub extend EntryKind with Eq::{equal, not_equal}
+
+pub extend EntryKind with @debug.Debug::{to_repr}
+
+pub extend EntryKind with ToJson::{to_json}
+
+pub extend EntryKind with Show::{to_string, output}
+
 ///|
 pub impl Show for EntryKind with fn output(kind, logger) {
   match kind {
@@ -24,6 +32,14 @@ pub(all) struct DirEntry {
   depth : Int
   kind : EntryKind
 } derive(Eq, Debug, ToJson)
+
+pub extend DirEntry with Eq::{equal, not_equal}
+
+pub extend DirEntry with @debug.Debug::{to_repr}
+
+pub extend DirEntry with ToJson::{to_json}
+
+pub extend DirEntry with Show::{to_string, output}
 
 ///|
 pub impl Show for DirEntry with fn output(entry, logger) {

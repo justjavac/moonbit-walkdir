@@ -5,6 +5,10 @@ pub(all) suberror WalkError {
   NotDirectory(String)
 } derive(Debug)
 
+pub extend WalkError with @debug.Debug::{to_repr}
+
+pub extend WalkError with Show::{to_string, output}
+
 ///|
 pub impl Show for WalkError with fn output(error, logger) {
   match error {
@@ -124,7 +128,7 @@ fn walk_dir(
   entries : Array[DirEntry],
 ) -> Unit raise {
   guard can_descend(current_depth, max_depth) else { () }
-  let children = @fs.read_dir(current)
+  let children = @fs.read_dir(current).to_owned()
   if sort {
     children.sort_by((lhs, rhs) => lhs.lexical_compare(rhs))
   }

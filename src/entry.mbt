@@ -5,12 +5,16 @@ pub(all) enum EntryKind {
   Dir
 } derive(Eq, Debug, ToJson)
 
+///|
 pub extend EntryKind with Eq::{equal, not_equal}
 
+///|
 pub extend EntryKind with @debug.Debug::{to_repr}
 
+///|
 pub extend EntryKind with ToJson::{to_json}
 
+///|
 pub extend EntryKind with Show::{to_string, output}
 
 ///|
@@ -29,16 +33,20 @@ pub impl Show for EntryKind with fn output(kind, logger) {
 /// or directory.
 pub(all) struct DirEntry {
   path : String
-  depth : Int
+  depth : Int32
   kind : EntryKind
 } derive(Eq, Debug, ToJson)
 
+///|
 pub extend DirEntry with Eq::{equal, not_equal}
 
+///|
 pub extend DirEntry with @debug.Debug::{to_repr}
 
+///|
 pub extend DirEntry with ToJson::{to_json}
 
+///|
 pub extend DirEntry with Show::{to_string, output}
 
 ///|
@@ -58,7 +66,7 @@ pub impl Show for DirEntry with fn output(entry, logger) {
 /// # Example
 /// ```mbt check
 /// test "DirEntry::is_dir example" {
-///   let entry = @walkdir.DirEntry::{ path: "demo", depth: 0, kind: Dir }
+///   let entry = @walkdir.DirEntry::{ path: "demo", depth: 0, kind: Dir, }
 ///   assert_true(entry.is_dir())
 /// }
 /// ```
@@ -72,7 +80,7 @@ pub fn DirEntry::is_dir(entry : DirEntry) -> Bool {
 /// # Example
 /// ```mbt check
 /// test "DirEntry::is_file example" {
-///   let entry = @walkdir.DirEntry::{ path: "demo.txt", depth: 1, kind: File }
+///   let entry = @walkdir.DirEntry::{ path: "demo.txt", depth: 1, kind: File, }
 ///   assert_true(entry.is_file())
 /// }
 /// ```

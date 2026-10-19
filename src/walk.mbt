@@ -5,8 +5,10 @@ pub(all) suberror WalkError {
   NotDirectory(String)
 } derive(Debug)
 
+///|
 pub extend WalkError with @debug.Debug::{to_repr}
 
+///|
 pub extend WalkError with Show::{to_string, output}
 
 ///|
@@ -55,10 +57,10 @@ pub impl Show for WalkError with fn output(error, logger) {
 /// ```
 pub fn walk(
   root : String,
-  include_root? : Bool = true,
-  include_dirs? : Bool = true,
-  max_depth? : Int,
-  sort? : Bool = true,
+  include_root~ : Bool = true,
+  include_dirs~ : Bool = true,
+  max_depth? : Int32,
+  sort~ : Bool = true,
 ) -> Array[DirEntry] raise {
   validate_root(root)
   let entries : Array[DirEntry] = []
@@ -95,8 +97,8 @@ pub fn walk(
 /// ```
 pub fn walk_files(
   root : String,
-  max_depth? : Int,
-  sort? : Bool = true,
+  max_depth? : Int32,
+  sort~ : Bool = true,
 ) -> Array[String] raise {
   let entries = match max_depth {
     Some(depth) =>
@@ -121,9 +123,9 @@ fn validate_root(root : String) -> Unit raise {
 /// Recursively collects entries under the current directory.
 fn walk_dir(
   current : String,
-  current_depth : Int,
+  current_depth : Int32,
   include_dirs~ : Bool,
-  max_depth : Int?,
+  max_depth : Int32?,
   sort~ : Bool,
   entries : Array[DirEntry],
 ) -> Unit raise {
@@ -157,7 +159,7 @@ fn walk_dir(
 
 ///|
 /// Decides whether traversal may continue below the current depth.
-fn can_descend(current_depth : Int, max_depth : Int?) -> Bool {
+fn can_descend(current_depth : Int32, max_depth : Int32?) -> Bool {
   match max_depth {
     Some(limit) => current_depth < limit
     None => true
@@ -166,6 +168,6 @@ fn can_descend(current_depth : Int, max_depth : Int?) -> Bool {
 
 ///|
 /// Builds a `DirEntry` value from raw traversal data.
-fn make_entry(path : String, depth : Int, kind : EntryKind) -> DirEntry {
-  { path, depth, kind }
+fn make_entry(path : String, depth : Int32, kind : EntryKind) -> DirEntry {
+  { path, depth, kind, }
 }

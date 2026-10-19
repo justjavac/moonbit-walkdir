@@ -22,10 +22,10 @@ fn join_path(lhs : String, rhs : String) -> String {
 ///|
 fn entry(
   path : String,
-  depth : Int,
+  depth : Int32,
   kind : @walkdir.EntryKind,
 ) -> @walkdir.DirEntry {
-  { path, depth, kind }
+  { path, depth, kind, }
 }
 
 ///|

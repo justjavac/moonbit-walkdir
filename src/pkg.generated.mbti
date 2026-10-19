@@ -15,6 +15,9 @@ pub(all) suberror WalkError {
   NotFound(String)
   NotDirectory(String)
 } derive(@debug.Debug)
+pub fn WalkError::output(Self, &Logger) -> Unit
+pub fn WalkError::to_repr(Self) -> @debug.Repr
+pub fn WalkError::to_string(Self) -> String
 pub impl Show for WalkError
 
 // Types and methods
@@ -23,17 +26,28 @@ pub(all) struct DirEntry {
   depth : Int
   kind : EntryKind
 } derive(Eq, ToJson, @debug.Debug)
+pub fn DirEntry::equal(Self, Self) -> Bool
 pub fn DirEntry::is_dir(Self) -> Bool
 pub fn DirEntry::is_file(Self) -> Bool
+pub fn DirEntry::not_equal(Self, Self) -> Bool
+pub fn DirEntry::output(Self, &Logger) -> Unit
+pub fn DirEntry::to_json(Self) -> Json
+pub fn DirEntry::to_repr(Self) -> @debug.Repr
+pub fn DirEntry::to_string(Self) -> String
 pub impl Show for DirEntry
 
 pub(all) enum EntryKind {
   File
   Dir
 } derive(Eq, ToJson, @debug.Debug)
+pub fn EntryKind::equal(Self, Self) -> Bool
+pub fn EntryKind::not_equal(Self, Self) -> Bool
+pub fn EntryKind::output(Self, &Logger) -> Unit
+pub fn EntryKind::to_json(Self) -> Json
+pub fn EntryKind::to_repr(Self) -> @debug.Repr
+pub fn EntryKind::to_string(Self) -> String
 pub impl Show for EntryKind
 
 // Type aliases
 
 // Traits
-
